@@ -1,0 +1,49 @@
+
+/* Profile Page */
+body {
+  background:  #361a3a
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #361a3a
+}
+
+.profile-button {
+  background:  #361a3a;
+  box-shadow: none;
+  border: none
+}
+
+.profile-button:hover {
+  background: #361a3a
+}
+
+.profile-button:focus {
+  background: #682773;
+  box-shadow: none
+}
+
+.profile-button:active {
+  background: #682773;
+  box-shadow: none
+}
+
+.back:hover {
+  color: #682773;
+  cursor: pointer
+}
+
+.labels {
+  font-size: 11px
+}
+
+.add-experience:hover {
+  background:#682773;
+  color: #fff;
+  cursor: pointer;
+  border: solid 1px #682773
+}
+
+
+

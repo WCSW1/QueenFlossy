@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="static">
+
+    <title>QueenFlossy RDH</title>
+    <style>
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "font-weight-bold", "Raleway",
+
+        }
+    </style>
+</head>
+
+<body class="w3-light-grey" class="container-fluid" class="img-fluid">
+    <div>
+        <div>
+            <div class="bg-image" style="background-image: url('../static/teeth_matter.png');
+           height: 455px" class="container-fluid" class="img-fluid">
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" class="col-sm-3 col-md-6 col-lg-4">
+                <div class="container px-4 px-lg-5">
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        Menu
+                    </button>
+                    <div class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+                        <a class="navbar-brand" href="/profile.html">
+                            <h3> {{user.first_name}} {{user.last_name}}</h3>
+                        </a>
+                        <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
+                                    href="contact.html"><b>Contact</b> </a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html"><b>About</b>
+                                </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/posts/new"><b>Post</b>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="dropdown" href="#"> <b>Study
+                                        Aids</b></a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="dropdown"
+                                    href="#"><b>Vacancies</b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link px-lg-2 py-2 py-lg-2" href="#">Link 1</a></li>
+                                    <li><a class="nav-link px-lg-2 py-2 py-lg-2" href="#">Link 2</a></li>
+                                    <li><a class="nav-link px-lg-2 py-2 py-lg-2" href="#">Link 3</a></li>
+                                </ul>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/user/logout">
+                                    <b>Logout</b> </a>
+                            </li>
+                    </div>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="w3-content" style="max-width:1400px" class="col-sm-3 col-md-6 col-lg-4" class="container-fluid">
+        <!-- Header -->
+        <header class="w3-container w3-center w3-padding-32 container p-5 my-5 border"
+            class="col-sm-3 col-md-6 col-lg-4" class="container-fluid">
+            <h1><b>Tooth Times</b></h1>
+            <p> By QueenFlossy, RDH<span class="w3-tag"></span></p>
+            <p>Lastest Dental Hygiene Research</p>
+        </header>
+
+        <!-- Grid -->
+        <div class="w3-row" class="col-sm-3 col-md-6 col-lg-4">
+
+
+            <!-- Blog entries -->
+            <div class="w3-col l8 s12" class="col-sm-3 col-md-6 col-lg-4">
+                {% for post in posts %}
+
+                <!-- Blog entry -->
+                <div class="w3-card-4 w3-margin w3-white" class="container-fluid" class="img-fluid">
+                    {% if post.photo %}
+                    <img src="{{ url_for('static', filename=post.photo) }}" alt="post photo cant be displayed">
+                    {% else %}
+                    <img src="../static/photosforwebsite/IMG_0042.jpg" alt="default post photo"
+                        style="height: 300px; width: 400px;" class="img-fluid">
+                    {% endif %}
+                    <div class="w3-container">
+                        <h3><b>{{post.title}}</b></h3>
+                        <h5>
+                            <p>{{post.posting}}</p>
+                            <br>
+                            <p>Posted by: {{post.creator.first_name}}</p><span class="w3-opacity">{{post.updated_at
+                                .strftime('%B %d,%Y')}}</span>
+                        </h5></a>
+                        <div class="w3-col m8 s12" class="col-sm-3 col-md-6 col-lg-4">
+                            <a href="/posts/{{post.id}}">
+                                <p><button class="w3-button w3-padding-large w3-white w3-border"
+                                        class="col-sm-3 col-md-6 col-lg-4"><b>VIEW POST
+                                            »</b></button></p>
+                            </a>
+                            {% if session['user_id'] == post.creator.id %}
+                            <a href="/posts/edit/{{post.id}}" class="Link">Edit</a>
+                            <a href="/posts/delete/{{post.id}}" class="Link">Delete</a>
+                            {% endif %}
+                        </div>
+                        <div class="w3-col m4 w3-hide-small" class="col-sm-3 col-md-6 col-lg-4">
+                            <p><span class="w3-padding-large w3-right" class="col-sm-3 col-md-6 col-lg-4">
+                                    <b>Comments </b> <span class="w3-tag">2</span></span></p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+                <!-- Introduction menu --><span class="d-block">
+
+                    <div class="w3-col l4" style="top:107%; right:3%; width:20%; position:absolute" class="img-fluid"
+                        class="container-fluid" class="w3-card w3-margin">
+                        <!-- About Card -->
+                        <div class="w3-card w3-margin w3-margin-top" class="col-sm-3 col-md-6 col-lg-4">
+                            <img src=".\static\Workday_Photo 2022-05-15 113457.jpg" class="img-fluid" alt="Image"
+                                style="width:100%" class="col-sm-3 col-md-6 col-lg-4" class="container-fluid">
+                            <div class="w3-container w3-white" class="container-fluid">
+                                <h4><b>Latonya Stevenson-Wright </b></h4>
+                                <p>My name is Latonya Stevenson-Wright. I am 43 years old, and I hail from New Haven,
+                                    CT, and am currently living in Columbia, SC. I am married and have three children
+                                    ages 18-21 who are finding their own way in life. I have two dogs, a toy poodle
+                                    named Sasha and a miniature schnauzer named Bentley. I am a veteran of the US Army
+                                    as a dental technician.
+                                    I graduated from the school formerly known as Tunxis Community College in
+                                    Farmington, CT with an AAS in Dental Hygiene in 2013. I received my Bachelor of
+                                    Science in Dental Hygiene here at the University of Bridgeport in August 2022.
+                                    Throughout my career, I have taken on the role of pediatric dental hygienist,
+                                    working in a public health setting, and volunteering for mission work in countries
+                                    other than the U.S. dental clinics providing care where needed most (Iraq and
+                                    Jamaica). Currently, I am managing two roles in this field, in public health at the
+                                    VA Hospital and in education as adjunct clinical staff at Midlands Technical
+                                    College, both here in Columbia.</p>
+                            </div>
+                        </div>
+                </span>
+                <hr>
+                <!-- Posts -->
+                <div class="w3-card w3-margin" class="col-sm-3 col-md-6 col-lg-4">
+                    <div class="w3-container w3-padding" class="col-sm-3 col-md-6 col-lg-4">
+                        <h4>Popular Posts</h4>
+                    </div>
+                    <ul class="w3-ul w3-hoverable w3-white" class="col-sm-3 col-md-6 col-lg-4">
+                        <li class="w3-padding-16" class="col-sm-3 col-md-6 col-lg-4">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large" class="col-sm-3 col-md-6 col-lg-4">Lorem</span><br>
+                            <span>Sed mattis nunc</span>
+                        </li>
+                        <li class="w3-padding-16" class="col-sm-3 col-md-6 col-lg-4">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large">Ipsum</span><br>
+                            <span>Praes tinci sed</span>
+                        </li>
+                        <li class="w3-padding-16">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large">Dorum</span><br>
+                            <span>Ultricies congue</span>
+                        </li>
+                        <li class="w3-padding-16 w3-hide-medium w3-hide-small">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large">Mingsum</span><br>
+                            <span>Lorem ipsum dipsum</span>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <!-- Events -->
+                <div class="w3-card w3-margin" class="col-sm-3 col-md-6 col-lg-4">
+                    <div class="w3-container w3-padding" class="col-sm-3 col-md-6 col-lg-4">
+                        <h4>Upcoming Events</h4>
+                    </div>
+                    <ul class="w3-ul w3-hoverable w3-white" class="col-sm-3 col-md-6 col-lg-4">
+                        <li class="w3-padding-16">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large">Lorem</span><br>
+                            <span>Sed mattis nunc</span>
+                        </li>
+                        <li class="w3-padding-16" class="col-sm-3 col-md-6 col-lg-4">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large" class="col-sm-3 col-md-6 col-lg-4">Ipsum</span><br>
+                            <span>Praes tinci sed</span>
+                        </li>
+                        <li class="w3-padding-16" class="col-sm-3 col-md-6 col-lg-4">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large" class="col-sm-3 col-md-6 col-lg-4">Dorum</span><br>
+                            <span>Ultricies congue</span>
+                        </li>
+                        <li class="w3-padding-16 w3-hide-medium w3-hide-small" class="col-sm-3 col-md-6 col-lg-4">
+                            <img src=".\static\tree.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px"
+                                class="col-sm-3 col-md-6 col-lg-4">
+                            <span class="w3-large" class="col-sm-3 col-md-6 col-lg-4">Mingsum</span><br>
+                            <span>Lorem ipsum dipsum</span>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <!-- Labels / tags -->
+                <div class="w3-card w3-margin" class="col-sm-3 col-md-6 col-lg-4">
+                    <div class="w3-container w3-padding" class="col-sm-3 col-md-6 col-lg-4">
+                        <h4>Tags</h4>
+                    </div>
+                    <div class="w3-container w3-white" class="col-sm-3 col-md-6 col-lg-4">
+                        <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+                            <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+                            <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+                            <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+                            <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span
+                                class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- END Introduction Menu -->
+            </div>
+
+            <!-- END GRID -->
+        </div><br>
+
+        <!-- END w3-content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-dark-grey  w3-margin-top">
+
+        <a href="mailto:latonyastevensonwright@gmail.com">
+            <i class="fa fa-envelope w3-hover-opacity"></i>
+        </a>
+        <a href="https://instagram.com/Queen_Flossy_RDH">
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+        </a>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </footer>
+    </div>
+
+
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/profile.css">
+    <title>Profile Page</title>
+</head>
+
+<body>
+    <div class="navbar navbar-expand-sm bg-light navbar-light fixed-top">
+        <a class="navbar-brand" href="/dashboard">
+            <h3> {{user.first_name}} {{user.last_name}}</h3>
+        </a>
+        <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html"><b>Contact</b> </a></li>
+            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html"><b>About</b> </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="dropdown" href="#"> <b>Study
+                        Aids</b></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" data-bs-toggle="dropdown" href="#"><b>Vacancies</b></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link px-lg-2 py-2 py-lg-2" href="#">Link 1</a></li>
+                    <li><a class="nav-link px-lg-2 py-2 py-lg-2" href="#">Link 2</a></li>
+                    <li><a class="nav-link px-lg-2 py-2 py-lg-2" href="#">Link 3</a></li>
+                </ul>
+            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/user/logout"> <b>Logout</b> </a>
+            </li>
+    </div>
+    <form action='/create_profile', methods="post">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
+                            class="rounded-circle mt-5" width="200px"
+                            src="../static/photosforwebsite/IMG_0385.jpg"><span
+                            class="font-weight-bold">{{user.first_name}}</span><span
+                            class="text-black-50">{{user.email}}</span><span> </span></div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">{{user.first_name}}'s Profile</h4>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">First Name</label><input type="text"
+                                    class="form-control" placeholder={{user.first_name}} name="first_name"
+                                    id="first_name"></div>
+                            <div class="col-md-6"><label class="labels">Last Name</label><input type="text"
+                                    class="form-control" placeholder={{user.last_name}} name="last_name" id="last_name">
+                            </div>
+                        </div>
+                        <div class="col-md-12"><label class="labels">Email</label><input type="text"
+                                class="form-control" placeholder={{user.email}} name="email" id="email"></div>
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text"
+                                    class="form-control" placeholder="enter Mobile number" name="phone_number"
+                                    id="phone_number"></div>
+                            <div class="col-md-12"><label class="labels">Address</label><input type="text"
+                                    class="form-control" placeholder="enter address" name="Address" id="Address"></div>
+                            <div class="col-md-12"><label class="labels">City</label><input type="text"
+                                    class="form-control" placeholder="enter City" name="City" id="City"></div>
+                            <div class="col-md-12"><label class="labels">State</label><input type="text"
+                                    class="form-control" placeholder="enter State" name="State" id="State"></div>
+                            <div class="col-md-12"><label class="labels">Zip code</label><input type="text"
+                                    class="form-control" placeholder="enter Zip code" name="Zip_code" id="Zip_code">
+                            </div>
+                            <div class="col-md-12"><label class="labels">Education</label><input type="text"
+                                    class="form-control" placeholder="education" name="Education" id="Education"></div>
+                            <div class="col-md-12"><label class="labels">Country</label><input type="text"
+                                    class="form-control" placeholder="country" name="Country" id="Country"></div>
+                        </div>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save
+                                Profile</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </form>
+
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
